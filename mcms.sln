@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{410C23C4-10BC-451B-89C6-FF44BACABFC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDb", "TestDb\TestDb.csproj", "{81F107EA-E4CE-4EEE-B26B-6D1099EA3C54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{98754EA1-A56D-4D02-A77C-42BB59DFCE06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mweb", "mweb\mweb.csproj", "{3212949F-8B67-4306-91E7-1702A3293667}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3212949F-8B67-4306-91E7-1702A3293667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3212949F-8B67-4306-91E7-1702A3293667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3212949F-8B67-4306-91E7-1702A3293667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3212949F-8B67-4306-91E7-1702A3293667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410C23C4-10BC-451B-89C6-FF44BACABFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410C23C4-10BC-451B-89C6-FF44BACABFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410C23C4-10BC-451B-89C6-FF44BACABFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410C23C4-10BC-451B-89C6-FF44BACABFC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F107EA-E4CE-4EEE-B26B-6D1099EA3C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F107EA-E4CE-4EEE-B26B-6D1099EA3C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F107EA-E4CE-4EEE-B26B-6D1099EA3C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F107EA-E4CE-4EEE-B26B-6D1099EA3C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98754EA1-A56D-4D02-A77C-42BB59DFCE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98754EA1-A56D-4D02-A77C-42BB59DFCE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98754EA1-A56D-4D02-A77C-42BB59DFCE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98754EA1-A56D-4D02-A77C-42BB59DFCE06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = TestDb\TestDb.csproj
+	EndGlobalSection
+EndGlobal
