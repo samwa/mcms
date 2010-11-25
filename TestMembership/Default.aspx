@@ -6,24 +6,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Welcome.aspx">
-        </asp:Login>
-        <br />
-        <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser">
-            <WizardSteps>
-                <asp:CreateUserWizardStep runat="server">
-                </asp:CreateUserWizardStep>
-                <asp:CompleteWizardStep runat="server">
-                </asp:CompleteWizardStep>
-            </WizardSteps>
-        </asp:CreateUserWizard>
-        <asp:ChangePassword ID="ChangePassword1" runat="server">
-        </asp:ChangePassword>
-    
-    </div>
-        <asp:PasswordRecovery ID="PasswordRecovery1" runat="server">
-        </asp:PasswordRecovery>
+    	TEST
     </form>
 </body>
 </html>

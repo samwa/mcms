@@ -11,8 +11,16 @@
 namespace TestMembership {
 	
 	
-	public partial class Default {
+	public partial class Login {
 		
 		protected System.Web.UI.HtmlControls.HtmlForm form1;
+		
+		protected System.Web.UI.WebControls.Login Login1;
+		
+		protected System.Web.UI.WebControls.CreateUserWizard CreateUserWizard1;
+		
+		protected System.Web.UI.WebControls.ChangePassword ChangePassword1;
+		
+		protected System.Web.UI.WebControls.PasswordRecovery PasswordRecovery1;
 	}
 }

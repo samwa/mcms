@@ -69,6 +69,8 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Scripts\RequiresRoleAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Scripts\SQLiteMembershipProvider.cs" />
+    <Compile Include="Scripts\SQLiteRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
