@@ -7,6 +7,8 @@ using System.Web.Routing;
 
 using Microsoft.Practices.Unity;
 
+using core.Repositories;
+
 namespace mweb
 {
 	public class MvcApplication : System.Web.HttpApplication
@@ -17,13 +19,15 @@ namespace mweb
 		{
 			routes.IgnoreRoute ("{resource}.axd/{*pathInfo}");
 			
-			routes.MapRoute ("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = "" });
+			routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = "" });
 			
 		}
 
 		protected void Application_Start ()
 		{
 			container = new UnityContainer();
+			
+			//container.RegisterType<IUserRepository>(new InjectionMember(UserRepository));
 			RegisterRoutes (RouteTable.Routes);
 		}
 	}

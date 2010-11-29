@@ -7,6 +7,10 @@
 <body>
 	<div>
 		<%= Html.Encode(ViewData["Message"]) %>
+		<% if (User.Identity.IsAuthenticated) { %>
+			Hello <%= User.Identity.Name %>
+		<% } else { %>
+			Not logged in
+		<% } %>
 	</div>
 </body>
-
