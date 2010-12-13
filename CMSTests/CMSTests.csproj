@@ -39,11 +39,13 @@
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Core\Services\DocumentServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="core\" />
-    <Folder Include="mweb\" />
     <Folder Include="mcms\" />
+    <Folder Include="Core\" />
+    <Folder Include="CMSWeb\" />
+    <Folder Include="Core\Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

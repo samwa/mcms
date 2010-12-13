@@ -65,6 +65,7 @@
     <Folder Include="Membership\" />
     <Folder Include="Configuration\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="HtmlHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="CMSControllerFactory.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\%40BaseController.cs" />
+    <Compile Include="HtmlHelpers\HtmlHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />

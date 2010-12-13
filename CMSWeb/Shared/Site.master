@@ -7,9 +7,19 @@
 	</asp:ContentPlaceHolder>
 </head>
 <body>
-	site:<br />
-	<asp:ContentPlaceHolder ID="MainContent" runat="server">
-	</asp:ContentPlaceHolder>
+	<div id="header">
+		<ul>
+			<%= Html.MenuItem("register", "Register", "Account") %>
+			<%= Html.MenuItem("login", "Login", "Account") %>
+			<%= Html.MenuItem("admin", "Structure", "Admin") %>
+		</ul>
+	</div>
+	<div id="body">	
+		site:<br />
+		<asp:ContentPlaceHolder ID="MainContent" runat="server">
+		</asp:ContentPlaceHolder>
+	</div>
+	<div id="footer"></div>
 </body>
 </html>
 
