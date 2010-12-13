@@ -35,17 +35,32 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Moq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Core\Services\DocumentServiceTest.cs" />
+    <Compile Include="CMSWeb\Controllers\DocumentControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="mcms\" />
     <Folder Include="Core\" />
     <Folder Include="CMSWeb\" />
     <Folder Include="Core\Services\" />
+    <Folder Include="CMSWeb\Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\CMSCore\CMSCore.csproj">
+      <Project>{410C23C4-10BC-451B-89C6-FF44BACABFC5}</Project>
+      <Name>CMSCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CMSWeb\CMSWeb.csproj">
+      <Project>{3212949F-8B67-4306-91E7-1702A3293667}</Project>
+      <Name>CMSWeb</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

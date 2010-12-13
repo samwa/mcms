@@ -50,7 +50,10 @@
     <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\UserService.cs" />
-    <Compile Include="Repositories\SqlRepository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Entities\IDocument.cs" />
+    <Compile Include="Entities\Document.cs" />
+    <Compile Include="Entities\IEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />

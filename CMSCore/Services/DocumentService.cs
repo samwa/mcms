@@ -18,27 +18,32 @@ namespace CMSCore.Services
 		#region IDocumentService implementation
 		public Document LoadDocument (int DocumentId)
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 		}
 
-		public IList<Document> ListDocuments ()
+		public IList<Document> ListDocuments()
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 		}
 
 		public Document AddDocument (Document document)
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 		}
 
 		public Document UpdateDocument (Document document)
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 		}
 
 		public bool DeleteDocument (Document document)
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
+		}
+		
+		public string GetDocumentCategory(Document document)
+		{
+			throw new NotImplementedException();
 		}
 		#endregion
 }

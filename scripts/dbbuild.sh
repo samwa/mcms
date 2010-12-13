@@ -1,1 +1,1 @@
-sqlmetal /namespace:CMSCore.Entities /provider:Sqlite "/conn:Data Source=../data/DocumentStore.db3" /code:../core/Entities/DocumentStore.cs
+sqlmetal /namespace:CMSCore.Entities /provider:Sqlite "/conn:Data Source=../CMSWeb/App_Data/DocumentStore.db3" /code:../CMSCore/Entities/DocumentStore.cs
