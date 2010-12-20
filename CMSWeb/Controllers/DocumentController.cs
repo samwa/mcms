@@ -5,17 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 
-using CMSCore.Services;
+using CMSWeb.Models;
 
 namespace CMSWeb.Controllers
 {
 	public class DocumentController : BaseController
 	{
-		IDocumentService _documentService = null;
+		IDocumentRepository _documentRepository = null;
 		
-		public DocumentController(IDocumentService documentService)
+		public DocumentController(IDocumentRepository documentRepository)
 		{
-			_documentService = documentService;
+			_documentRepository = documentRepository;
 		}
 	}
 }

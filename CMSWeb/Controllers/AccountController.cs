@@ -6,17 +6,17 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Security;
 
-using CMSCore.Services;
+using CMSWeb.Models;
 
 namespace CMSWeb.Controllers
 {
 	public class AccountController : BaseController
 	{
-		IUserService _userService = null;
+		IUserRepository _userRepository = null;
 		
-		public AccountController (IUserService userService)
+		public AccountController (IUserRepository userRepository)
 		{
-			_userService = userService;
+			_userRepository = userRepository;
 		}
 		
 		public void Index()

@@ -3,8 +3,7 @@ using System.Web.Mvc;
 
 using Microsoft.Practices.Unity;
 
-using CMSCore.Services;
-using CMSCore.Repositories;
+using CMSWeb.Models;
 
 namespace CMSWeb
 {
@@ -20,16 +19,15 @@ namespace CMSWeb
 		public void InstallComponents()
 		{	
 			// Register repositories
+			this.RegisterType<IRepositoryBase, RepositoryBase>();
 			this.RegisterType<IDocumentRepository, DocumentRepository>();
 			this.RegisterType<IUserRepository, UserRepository>();
+			this.RegisterType<IStructureRepository, StructureRepository>();
 			
 			this.Configure<InjectedMembers>()
-				.ConfigureInjectionFor<RepositoryBase>(
-				                                       new InjectionConstructor("DocStoreConn"));
-			
-			// Register services
-			this.RegisterType<IDocumentService, DocumentService>();
-			this.RegisterType<IUserService, UserService>();
+				.ConfigureInjectionFor<RepositoryBase>(new InjectionConstructor("DocStoreConn"));
+			this.Configure<InjectedMembers>()
+				.ConfigureInjectionFor<StructureRepository>(new InjectionConstructor("DocStoreConn"));
 			
 			// add the container to the controller factory (this makes the repos and services available to the controllers
 			CMSControllerFactory controllerFactory = new CMSControllerFactory(this);

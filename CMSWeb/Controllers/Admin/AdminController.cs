@@ -5,30 +5,25 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 
-using CMSCore.Services;
+using CMSWeb.Models;
 
-namespace CMSWeb.Controllers
+namespace CMSWeb.Controllers.Admin
 {
 	public class AdminController : BaseController
 	{
-		IUserService _userService = null;
+		IUserRepository _userRepository = null;
 		
-		public AdminController (IUserService userService)
+		public AdminController (IUserRepository userRepository)
 		{
-			_userService = userService;
+			_userRepository = userRepository;
 		}
 		
 		[Authorize(Roles = "Admin")]
 		public void Index()
 		{
-			//ViewResult("Index");
 			View();
 		}
 		
-		public ActionResult Structure()
-		{
-			return View("Structure");
-		}
 		
 		public ActionResult ManageUsers()
 		{
