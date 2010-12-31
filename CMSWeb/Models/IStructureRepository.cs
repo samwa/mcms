@@ -5,12 +5,12 @@ namespace CMSWeb.Models
 
 	public interface IStructureRepository
 	{
-		Structure LoadStructure(int StructureId);
+		Structure LoadStructure(int structureId);
 		IList<Structure> ListStructures();
 		
 		Structure AddStructure(Structure structure);
 		Structure UpdateStructure(Structure structure);
-		bool DeleteStructure(Structure structure);
+		bool DeleteStructure(int structureId);
 	}
 }
 

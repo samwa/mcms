@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Configuration;
+
 using Mono.Data.Sqlite;
 
 namespace CMSWeb.Models
@@ -18,9 +19,15 @@ namespace CMSWeb.Models
 		}
 		
 		#region IStructureRepository implementation
-		public Structure LoadStructure (int StructureId)
+		public Structure LoadStructure (int structureId)
 		{
-			throw new NotImplementedException ();
+			Structure structure = 
+				(from s in _db.Structure 
+				where s.StructureID == structureId
+				select s)
+					.FirstOrDefault();
+			
+			return structure;
 		}
 		
 		public IList<Structure> ListStructures ()
@@ -38,17 +45,27 @@ namespace CMSWeb.Models
 
 		public Structure AddStructure (Structure structure)
 		{
-			throw new NotImplementedException ();
+			_db.Structure.InsertOnSubmit(structure);
+			_db.SubmitChanges();
+			
+			return structure;
 		}
 
 		public Structure UpdateStructure (Structure structure)
 		{
-			throw new NotImplementedException ();
+			_db.Structure.Attach(structure);
+			_db.SubmitChanges();
+			
+			return structure;
 		}
 
-		public bool DeleteStructure (Structure structure)
+		public bool DeleteStructure (int structureId)
 		{
-			throw new NotImplementedException ();
+			Structure structure = LoadStructure(structureId); 
+			_db.Structure.DeleteOnSubmit(structure);
+			_db.SubmitChanges();
+			
+			return true;
 		}
 		#endregion
 }

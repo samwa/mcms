@@ -9,9 +9,10 @@
 <body>
 	<div id="header">
 		<ul>
-			<%= Html.MenuItem("register", "Register", "Account") %>
-			<%= Html.MenuItem("login", "Login", "Account") %>
-			<%= Html.MenuItem("admin", "Structure", "Admin") %>
+			<%= Html.MenuItem("home", "Index", "Home", "") %>		
+			<%= Html.MenuItem("register", "Register", "Account", "") %>
+			<%= Html.MenuItem("login", "Login", "Account", "") %>
+			<%= Html.MenuItem("admin", "Index", "Structure", "") %>
 		</ul>
 	</div>
 	<div id="body">	

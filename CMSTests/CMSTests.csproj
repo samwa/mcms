@@ -54,10 +54,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\CMSCore\CMSCore.csproj">
-      <Project>{410C23C4-10BC-451B-89C6-FF44BACABFC5}</Project>
-      <Name>CMSCore</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CMSWeb\CMSWeb.csproj">
       <Project>{3212949F-8B67-4306-91E7-1702A3293667}</Project>
       <Name>CMSWeb</Name>

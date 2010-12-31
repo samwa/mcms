@@ -1,6 +1,8 @@
 
 
 
+	using CMSWeb.Models;
+
 namespace CMSTests.Core.Services
 {
 	using System;
@@ -8,20 +10,17 @@ namespace CMSTests.Core.Services
 	using NUnit.Framework;
 	
 	using Moq;
-
-	using CMSCore.Entities;
-	using CMSCore.Services;
 	
 	[TestFixture]
 	public class DocumentServiceTest
 	{
-		private Mock<IDocument> _mockDocument;
-		private Mock<IDocumentService> _mockDocumentService;
+		private Mock<Document> _mockDocument;
+		private Mock<IDocumentRepository> _mockDocumentRepository;
 		
 		[SetUp]
 		public void SetupFixture()
-		{
-			_mockDocument = new Mock<IDocument>();
+		{			
+			_mockDocument = new Mock<Document>();
 		}
 		
 		[TearDown]
@@ -33,7 +32,7 @@ namespace CMSTests.Core.Services
 		[Test]
 		public void Add_Document_Test()
 		{
-			//_mockDocument.Setup(m => m.
+			//_mockDocumentService.Setup(m => m.AddDocument(
 		}
 	}
 }

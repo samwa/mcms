@@ -25,7 +25,7 @@ namespace CMSWeb.Controllers.Admin
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
         }
 		
 		public ActionResult List()
@@ -52,13 +52,14 @@ namespace CMSWeb.Controllers.Admin
 
         //
         // POST: /Structure/Create
-
+		
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Structure structure)
         {
             try
             {
                 // TODO: Add insert logic here
+				_structureRepository.AddStructure(structure);
 
                 return RedirectToAction("Index");
             }
@@ -73,7 +74,8 @@ namespace CMSWeb.Controllers.Admin
  
         public ActionResult Edit(int id)
         {
-            return View();
+			Structure structure = _structureRepository.LoadStructure(id);
+            return View(structure);
         }
 
         //
@@ -85,6 +87,8 @@ namespace CMSWeb.Controllers.Admin
             try
             {
                 // TODO: Add update logic here
+				Structure structure = new Structure{ StructureID = null, StructureName = "new structure", StructureParentID = null};
+				_structureRepository.UpdateStructure(structure);
  
                 return RedirectToAction("Index");
             }
@@ -92,6 +96,14 @@ namespace CMSWeb.Controllers.Admin
             {
                 return View();
             }
+        }
+		
+        public ActionResult Delete(string id)
+        {
+			_structureRepository.DeleteStructure(Convert.ToInt32(id));
+
+
+            return View("Deleted");
         }
 	}
 }

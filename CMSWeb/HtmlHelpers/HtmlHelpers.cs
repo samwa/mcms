@@ -7,14 +7,18 @@ namespace CMSWeb.HtmlHelpers
 	public static class HtmlHelpers
 	{
 		
-		public static string MenuItem(this HtmlHelper helper, string linkText, string actionName, string controllerName)
+		public static string MenuItem(this HtmlHelper helper, string linkText, string actionName, string controllerName, string area)
 		{
 			string currentControllerName = (string)helper.ViewContext.RouteData.Values["controller"];
 			string currentActionName = (string)helper.ViewContext.RouteData.Values["action"];
 			
 			TagBuilder builder = new TagBuilder("li");
 			
-			builder.InnerHtml = helper.ActionLink(linkText, actionName, controllerName);
+			if (String.IsNullOrEmpty(area))
+				builder.InnerHtml = helper.ActionLink(linkText, actionName, controllerName);
+			else
+				builder.InnerHtml = helper.ActionLink(linkText, actionName, controllerName, new { Area = area}, new {});
+				
 			// add selected class
 			if (currentControllerName == controllerName 
 			    && currentActionName == actionName)
