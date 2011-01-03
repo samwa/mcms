@@ -26,7 +26,7 @@ namespace CMSWeb.Controllers
 		
 		public ActionResult Login()
 		{
-			return View ();
+			return View();
 		}
 		
 		public void DoLogin(string username, string password)

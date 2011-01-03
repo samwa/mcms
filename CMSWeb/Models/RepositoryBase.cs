@@ -3,6 +3,8 @@ namespace CMSWeb.Models
 {
 	using System;
 	using System.Configuration;
+	
+	using Mono.Data.Sqlite;
 
 	public class RepositoryBase : IRepositoryBase
 	{
@@ -11,8 +13,9 @@ namespace CMSWeb.Models
 		
 		public RepositoryBase (string connectionString)
 		{
-			_connection = ConfigurationManager.ConnectionStrings[connectionString].ConnectionString;
-			_db = new Main(connectionString);
+			string connection = ConfigurationManager.ConnectionStrings[connectionString].ConnectionString;
+			var conn = new SqliteConnection(connection);
+			_db = new Main(conn);
 		}
 	}
 }

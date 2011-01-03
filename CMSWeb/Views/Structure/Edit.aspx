@@ -7,18 +7,21 @@
     
     
     <% using (Html.BeginForm()) {%>
-
-    <fieldset>
-        <legend>Edit Structure</legend>
-        <%: Html.EditorFor(model => model) %>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+		<%= Html.Hidden("StructureID", Model.StructureID) %>
+	    <fieldset>
+	        <legend>Edit Structure</legend>
+			<p>
+				<label for="">Structure name</label>:
+				<%= Html.TextBox("StructureName", Model.StructureName) %>
+			</p>
+	        <p>
+	            <input type="submit" value="Save" />
+	        </p>
+	    </fieldset>
 
     <% } %>
 
     <div>
-        <%:Html.ActionLink("Back to Albums", "Index") %>
+        <%= Html.ActionLink("Back to Structures", "Index") %>
     </div>
 </asp:Content>

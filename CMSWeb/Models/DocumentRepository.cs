@@ -3,6 +3,7 @@ namespace CMSWeb.Models
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 
 	public class DocumentRepository : RepositoryBase, IDocumentRepository
 	{
@@ -13,9 +14,28 @@ namespace CMSWeb.Models
 		}
 
 		#region IDocumentRepository implementation
-		public Document LoadDocument (int DocumentId)
+		public Document LoadDocument (int documentId)
 		{
-			throw new NotImplementedException ();
+			Document document = 
+				(from d in _db.Document 
+				where d.DocumentID == documentId
+				select d)
+					.FirstOrDefault();
+			
+			return document;
+		}
+		
+		public Document LoadDocumentByStructure (int structureId)
+		{
+			Document document = 
+				(from d in _db.Document 
+				 join s in _db.Structure on d.DocumentID equals s.StructureDocumentID				 
+				where s.StructureID == structureId
+				select d)
+					.FirstOrDefault();
+			
+			return document;
+			
 		}
 
 		public IList<Document> ListDocuments ()
@@ -25,12 +45,22 @@ namespace CMSWeb.Models
 
 		public Document AddDocument (Document document)
 		{
-			throw new NotImplementedException ();
+			_db.Document.InsertOnSubmit(document);
+			_db.SubmitChanges();
+			
+			return document;
 		}
 
 		public Document UpdateDocument (Document document)
 		{
-			throw new NotImplementedException ();
+			Document oldDocument = LoadDocument(document.DocumentID.Value);
+			
+			oldDocument.DocumentName = document.DocumentName;
+			oldDocument.DocumentData = document.DocumentData;
+
+			_db.SubmitChanges();
+			
+			return document;
 		}
 
 		public bool DeleteDocument (Document document)

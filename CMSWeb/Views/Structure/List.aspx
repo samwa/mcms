@@ -8,7 +8,8 @@
 List
 <ul>
 <% foreach (var structure in Model) { %>
-	<li><%= Html.Encode(structure.StructureName) %>
+	<li>
+		<%= Html.ActionLink(structure.StructureName, "Edit", new { id=structure.StructureID }) %>
          <%= Html.ActionLink("X", "Delete", new { id=structure.StructureID })%></li>
 <% } %>
 </ul>

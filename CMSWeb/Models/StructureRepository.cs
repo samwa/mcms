@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Configuration;
 
-using Mono.Data.Sqlite;
 
 namespace CMSWeb.Models
 {
-	public class StructureRepository : IStructureRepository
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+		
+	public class StructureRepository : RepositoryBase, IStructureRepository
 	{	
-		protected Main _db;
 		public StructureRepository (string connectionString)
+			:base(connectionString)
 		{
-			string connection = ConfigurationManager.ConnectionStrings[connectionString].ConnectionString;
-			var conn = new SqliteConnection(connection);
-			_db = new Main(conn);
 			
 		}
 		
@@ -53,7 +49,10 @@ namespace CMSWeb.Models
 
 		public Structure UpdateStructure (Structure structure)
 		{
-			_db.Structure.Attach(structure);
+			Structure oldStructure = LoadStructure(structure.StructureID.Value);
+			
+			oldStructure.StructureName = structure.StructureName;			
+
 			_db.SubmitChanges();
 			
 			return structure;

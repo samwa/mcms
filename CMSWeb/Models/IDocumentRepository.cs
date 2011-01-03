@@ -6,7 +6,8 @@ namespace CMSWeb.Models
 
 	public interface IDocumentRepository
 	{
-		Document LoadDocument(int DocumentId);
+		Document LoadDocument(int documentId);
+		Document LoadDocumentByStructure(int structureId);
 		IList<Document> ListDocuments();
 		
 		Document AddDocument(Document document);

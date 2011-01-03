@@ -82,20 +82,19 @@ namespace CMSWeb.Controllers.Admin
         // POST: /Structure/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Structure structure)
         {
-            try
-            {
+			
                 // TODO: Add update logic here
-				Structure structure = new Structure{ StructureID = null, StructureName = "new structure", StructureParentID = null};
+				structure = new Structure{ StructureID = 1, StructureName = "test", StructureParentID = null};
+				if (!TryUpdateModel(structure, new[] { "StructureID", "StructureName" }))
+				{
+					
+				}
+				//UpdateModel(structure);
 				_structureRepository.UpdateStructure(structure);
- 
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+			
         }
 		
         public ActionResult Delete(string id)
@@ -103,8 +102,14 @@ namespace CMSWeb.Controllers.Admin
 			_structureRepository.DeleteStructure(Convert.ToInt32(id));
 
 
-            return View("Deleted");
+            return RedirectToAction("List");
         }
+		
+		public ActionResult Menu()
+		{
+			IList<Structure> structure = _structureRepository.ListStructures();
+			return View(structure);
+		}
 	}
 }
 

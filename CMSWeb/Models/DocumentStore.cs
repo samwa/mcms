@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from main on 2010-12-17 22:43:15Z.
+// Auto-generated from main on 2011-01-02 23:13:54Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace CMSWeb.Models
@@ -13,9 +13,15 @@ namespace CMSWeb.Models
 	using System;
 	using System.ComponentModel;
 	using System.Data;
+#if MONO_STRICT
 	using System.Data.Linq;
+#else   // MONO_STRICT
+	using DbLinq.Data.Linq;
+	using DbLinq.Vendor;
+#endif  // MONO_STRICT
 	using System.Data.Linq.Mapping;
-	using System.Diagnostics;	
+	using System.Diagnostics;
+	
 	
 	public partial class Main : DataContext
 	{
@@ -26,12 +32,6 @@ namespace CMSWeb.Models
 		
 		public Main(string connectionString) : 
 				base(connectionString)
-		{
-			this.OnCreated();
-		}
-		
-		public Main(IDbConnection connection) : 
-				base(connection)
 		{
 			this.OnCreated();
 		}
@@ -73,13 +73,55 @@ namespace CMSWeb.Models
 		}
 	}
 	
+	#region Start MONO_STRICT
+#if MONO_STRICT
+
+	public partial class Main
+	{
+		
+		public Main(IDbConnection connection) : 
+				base(connection)
+		{
+			this.OnCreated();
+		}
+	}
+	#region End MONO_STRICT
+	#endregion
+#else     // MONO_STRICT
+	
+	public partial class Main
+	{
+		
+		public Main(IDbConnection connection) : 
+				base(connection, new DbLinq.Sqlite.SqliteVendor())
+		{
+			this.OnCreated();
+		}
+		
+		public Main(IDbConnection connection, IVendor sqlDialect) : 
+				base(connection, sqlDialect)
+		{
+			this.OnCreated();
+		}
+		
+		public Main(IDbConnection connection, MappingSource mappingSource, IVendor sqlDialect) : 
+				base(connection, mappingSource, sqlDialect)
+		{
+			this.OnCreated();
+		}
+	}
+	#region End Not MONO_STRICT
+	#endregion
+#endif     // MONO_STRICT
+	#endregion
+	
 	[Table(Name="main.document")]
 	public partial class Document : System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		private static System.ComponentModel.PropertyChangingEventArgs emptyChangingEventArgs = new System.ComponentModel.PropertyChangingEventArgs("");
 		
-		private byte[] _documentData;
+		private string _documentData;
 		
 		private System.Nullable<int> _documentID;
 		
@@ -90,7 +132,7 @@ namespace CMSWeb.Models
 		
 				partial void OnDocumentDataChanged();
 		
-				partial void OnDocumentDataChanging(byte[] value);
+				partial void OnDocumentDataChanging(string value);
 		
 				partial void OnDocumentIDChanged();
 		
@@ -106,9 +148,9 @@ namespace CMSWeb.Models
 			this.OnCreated();
 		}
 		
-		[Column(Storage="_documentData", Name="document_data", DbType="BLOB", AutoSync=AutoSync.Never)]
+		[Column(Storage="_documentData", Name="document_data", DbType="TEXT", AutoSync=AutoSync.Never)]
 		[DebuggerNonUserCode()]
-		public byte[] DocumentData
+		public string DocumentData
 		{
 			get
 			{
@@ -198,6 +240,8 @@ namespace CMSWeb.Models
 		
 		private static System.ComponentModel.PropertyChangingEventArgs emptyChangingEventArgs = new System.ComponentModel.PropertyChangingEventArgs("");
 		
+		private System.Nullable<decimal> _structureDocumentID;
+		
 		private System.Nullable<int> _structureID;
 		
 		private string _structureName;
@@ -206,6 +250,10 @@ namespace CMSWeb.Models
 		
 		#region Extensibility Method Declarations
 				partial void OnCreated();
+		
+				partial void OnStructureDocumentIDChanged();
+		
+				partial void OnStructureDocumentIDChanging(System.Nullable<decimal> value);
 		
 				partial void OnStructureIDChanged();
 		
@@ -223,6 +271,27 @@ namespace CMSWeb.Models
 		public Structure()
 		{
 			this.OnCreated();
+		}
+		
+		[Column(Storage="_structureDocumentID", Name="structure_document_id", DbType="NUMERIC", AutoSync=AutoSync.Never)]
+		[DebuggerNonUserCode()]
+		public System.Nullable<decimal> StructureDocumentID
+		{
+			get
+			{
+				return this._structureDocumentID;
+			}
+			set
+			{
+				if ((_structureDocumentID != value))
+				{
+					this.OnStructureDocumentIDChanging(value);
+					this.SendPropertyChanging();
+					this._structureDocumentID = value;
+					this.SendPropertyChanged("StructureDocumentID");
+					this.OnStructureDocumentIDChanged();
+				}
+			}
 		}
 		
 		[Column(Storage="_structureID", Name="structure_id", DbType="INTEGER", IsPrimaryKey=true, IsDbGenerated=true, AutoSync=AutoSync.Never)]

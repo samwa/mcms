@@ -28,6 +28,8 @@ namespace CMSWeb
 				.ConfigureInjectionFor<RepositoryBase>(new InjectionConstructor("DocStoreConn"));
 			this.Configure<InjectedMembers>()
 				.ConfigureInjectionFor<StructureRepository>(new InjectionConstructor("DocStoreConn"));
+			this.Configure<InjectedMembers>()
+				.ConfigureInjectionFor<DocumentRepository>(new InjectionConstructor("DocStoreConn"));
 			
 			// add the container to the controller factory (this makes the repos and services available to the controllers
 			CMSControllerFactory controllerFactory = new CMSControllerFactory(this);

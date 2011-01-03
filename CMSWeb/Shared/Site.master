@@ -9,17 +9,29 @@
 <body>
 	<div id="header">
 		<ul>
-			<%= Html.MenuItem("home", "Index", "Home", "") %>		
-			<%= Html.MenuItem("register", "Register", "Account", "") %>
-			<%= Html.MenuItem("login", "Login", "Account", "") %>
-			<%= Html.MenuItem("admin", "Index", "Structure", "") %>
+			<%= Html.MenuItem("home", "Index", "Home") %>		
+			<%= Html.MenuItem("register", "Register", "Account") %>
+			<%= Html.MenuItem("login", "Login", "Account") %>
+			<%= Html.MenuItem("admin", "Index", "Structure") %>
 		</ul>
 	</div>
+	
 	<div id="body">	
 		site:<br />
-		<asp:ContentPlaceHolder ID="MainContent" runat="server">
-		</asp:ContentPlaceHolder>
-	</div>
+	
+        <div id="structure">
+            <% Html.RenderAction("Menu", "Structure"); %>
+        </div>
+
+        <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+
+        <div id="footer">
+            built with <a href="http://mono-project.com/FAQ:_ASP.NET">Mono ASP.NET MVC 2</a>
+        </div>
+
+    </div>
 	<div id="footer"></div>
 </body>
 </html>
