@@ -27,6 +27,8 @@ namespace CMSWeb.Controllers
 			return View(structure);
 		}
 		
+		[CustomAttribute("text")]
+		[Authorize]
 		public ActionResult Edit(int structureId)
 		{
 			Structure structure = _structureRepository.LoadStructure(structureId);
@@ -38,7 +40,7 @@ namespace CMSWeb.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
 		[ValidateInput(false)]
         public ActionResult Edit(int structureId, string documentData, string documentName)
-        {					
+        {
 			// update or create document
 			Document document = _documentRepository.LoadDocumentByStructure(structureId);
 			

@@ -18,6 +18,13 @@
 	
 	<div id="body">	
 		site:<br />
+		<% 
+		if (HttpContext.Current.User.Identity.IsAuthenticated) { %>
+			Hello <%= HttpContext.Current.User.Identity.Name %>, <%= Html.ActionLink("Logout", "Logout", "Account") %>
+		<% } else { %>
+			Not logged in
+		<% } %>
+		<br />
 	
         <div id="structure">
             <% Html.RenderAction("Menu", "Structure"); %>
@@ -33,6 +40,10 @@
 
     </div>
 	<div id="footer"></div>
+	<script src="<%= Url.Content("~/Scripts/MicrosoftAjax.debug.js") %>" 
+		type="text/javascript"></script>
+	<script src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>" 
+		type="text/javascript"></script>
 </body>
 </html>
 

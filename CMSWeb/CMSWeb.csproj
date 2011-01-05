@@ -82,9 +82,9 @@
     <Folder Include="Controllers\Admin\" />
     <Folder Include="Controllers\" />
     <Folder Include="Views\Structure\" />
-    <Folder Include="Shared\EditorTemplates\" />
     <Folder Include="Views\Browse\" />
     <Folder Include="Scripts\TinyMce\" />
+    <Folder Include="Attributes\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -115,6 +115,8 @@
     <Compile Include="Controllers\Admin\StructureController.cs" />
     <Compile Include="Models\IRepositoryBase.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
+    <Compile Include="Attributes\CustomAttribute.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -374,6 +376,9 @@
     <Content Include="Scripts\TinyMce\themes\simple\editor_template.js" />
     <Content Include="Scripts\TinyMce\themes\simple\editor_template_src.js" />
     <Content Include="Views\Browse\Edit.aspx" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

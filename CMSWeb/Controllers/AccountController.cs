@@ -29,18 +29,45 @@ namespace CMSWeb.Controllers
 			return View();
 		}
 		
-		public void DoLogin(string username, string password)
+		public ActionResult Register()
+		{
+			return View();
+		}
+		
+        [AcceptVerbs(HttpVerbs.Post)]
+		[ValidateInput(false)]
+        public ActionResult Register(string username, string password, string confirmPassword, string email)
+        {
+			if (password == confirmPassword)
+			{
+				System.Web.Security.Membership.CreateUser(username, password, email);	
+				
+				FormsAuthentication.SetAuthCookie(username, true);
+				return RedirectToAction("Index", "Home");
+			}
+			
+			return RedirectToAction("Index");
+			
+		}
+		
+		public ActionResult DoLogin(string username, string password)
 		{
 			if (System.Web.Security.Membership.ValidateUser(username, password))
 			{
 				FormsAuthentication.SetAuthCookie(username, true);
-				RedirectToAction("Index", "Home");
+				return RedirectToAction("Index", "Home");
 			}
 			else
 			{
 				TempData["LoginMessage"] = "The username and password supplied are not valid";
-				RedirectToAction("Index");
+				return RedirectToAction("Login");
 			}
 		}		
+		
+		public ActionResult Logout()
+		{
+			FormsAuthentication.SignOut();
+			return RedirectToAction("Index", "Home");
+		}
 	}
 }
