@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from main on 2011-01-02 23:13:54Z.
+// Auto-generated from main on 2011-01-06 20:43:37Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace CMSWeb.Models
@@ -127,6 +127,8 @@ namespace CMSWeb.Models
 		
 		private string _documentName;
 		
+		private string _documentStatus;
+		
 		#region Extensibility Method Declarations
 				partial void OnCreated();
 		
@@ -141,6 +143,10 @@ namespace CMSWeb.Models
 				partial void OnDocumentNameChanged();
 		
 				partial void OnDocumentNameChanging(string value);
+		
+				partial void OnDocumentStatusChanged();
+		
+				partial void OnDocumentStatusChanging(string value);
 		#endregion
 		
 		public Document()
@@ -207,6 +213,27 @@ namespace CMSWeb.Models
 					this._documentName = value;
 					this.SendPropertyChanged("DocumentName");
 					this.OnDocumentNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_documentStatus", Name="document_status", DbType="TEXT", AutoSync=AutoSync.Never)]
+		[DebuggerNonUserCode()]
+		public string DocumentStatus
+		{
+			get
+			{
+				return this._documentStatus;
+			}
+			set
+			{
+				if (((_documentStatus == value) == false))
+				{
+					this.OnDocumentStatusChanging(value);
+					this.SendPropertyChanging();
+					this._documentStatus = value;
+					this.SendPropertyChanged("DocumentStatus");
+					this.OnDocumentStatusChanged();
 				}
 			}
 		}

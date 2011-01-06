@@ -43,6 +43,17 @@ namespace CMSWeb.Models
 			throw new NotImplementedException ();
 		}
 
+		public IList<Document> ListDocuments (string status)
+		{
+			List<Document> documents = 
+				(from d in _db.Document
+				 where d.DocumentStatus == status
+				 select d)
+					.ToList();
+			
+			return documents;
+		}
+
 		public Document AddDocument (Document document)
 		{
 			_db.Document.InsertOnSubmit(document);
@@ -57,6 +68,7 @@ namespace CMSWeb.Models
 			
 			oldDocument.DocumentName = document.DocumentName;
 			oldDocument.DocumentData = document.DocumentData;
+			oldDocument.DocumentStatus = document.DocumentStatus;
 
 			_db.SubmitChanges();
 			

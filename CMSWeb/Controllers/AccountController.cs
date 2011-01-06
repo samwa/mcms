@@ -15,6 +15,7 @@ namespace CMSWeb.Controllers
 		IUserRepository _userRepository = null;
 		
 		public AccountController (IUserRepository userRepository)
+			: base(false)
 		{
 			_userRepository = userRepository;
 		}
@@ -46,8 +47,7 @@ namespace CMSWeb.Controllers
 				return RedirectToAction("Index", "Home");
 			}
 			
-			return RedirectToAction("Index");
-			
+			return RedirectToAction("Index");			
 		}
 		
 		public ActionResult DoLogin(string username, string password)

@@ -9,6 +9,7 @@ namespace CMSWeb.Models
 		Document LoadDocument(int documentId);
 		Document LoadDocumentByStructure(int structureId);
 		IList<Document> ListDocuments();
+		IList<Document> ListDocuments(string status);
 		
 		Document AddDocument(Document document);
 		Document UpdateDocument(Document document);

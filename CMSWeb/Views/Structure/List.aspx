@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="StructureListContent" ContentPlaceHolderID="MainContent" runat="server">
 
-			<%= Html.MenuItem("Add", "Create", "Structure", "") %>		
+			<%= Html.MenuItem("Add", "Create", "Structure") %>		
 
 List
 <ul>

@@ -9,16 +9,10 @@ namespace CMSWeb.HtmlHelpers
 		
 		public static string MenuItem(this HtmlHelper helper, string linkText, string actionName, string controllerName)
 		{
-			return MenuItem(helper, linkText, actionName, controllerName, String.Empty);
+			return MenuItem(helper, linkText, actionName, controllerName, new {});
 		}
 		
-		public static string MenuItem(this HtmlHelper helper, string linkText, string actionName, string controllerName, string area)
-		{
-			
-			return MenuItem(helper, linkText, actionName, controllerName, area, new {});
-		}
-		
-		public static string MenuItem(this HtmlHelper helper, string linkText, string actionName, string controllerName, string area, object routeValues)
+		public static string MenuItem(this HtmlHelper helper, string linkText, string actionName, string controllerName, object routeValues)
 		{
 			string currentControllerName = (string)helper.ViewContext.RouteData.Values["controller"];
 			string currentActionName = (string)helper.ViewContext.RouteData.Values["action"];

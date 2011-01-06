@@ -9,10 +9,17 @@
 <body>
 	<div id="header">
 		<ul>
-			<%= Html.MenuItem("home", "Index", "Home") %>		
-			<%= Html.MenuItem("register", "Register", "Account") %>
-			<%= Html.MenuItem("login", "Login", "Account") %>
-			<%= Html.MenuItem("admin", "Index", "Structure") %>
+			<% if ((bool)ViewData["IsAdmin"]) { %>
+				<%= Html.MenuItem("home", "Index", "Home") %>	
+				<%= Html.MenuItem("structure", "Index", "Structure") %>	
+				<%= Html.MenuItem("approval", "Index", "Approval") %>	
+				<%= Html.MenuItem("user manager", "Index", "UserManager") %>	
+			<% } else { %>
+				<%= Html.MenuItem("home", "Index", "Home") %>		
+				<%= Html.MenuItem("register", "Register", "Account") %>
+				<%= Html.MenuItem("login", "Login", "Account") %>
+				<%= Html.MenuItem("admin", "Index", "Structure") %>			
+			<% } %>
 		</ul>
 	</div>
 	

@@ -14,6 +14,7 @@ namespace CMSWeb.Controllers
 		IDocumentRepository _documentRepository = null;
 		
 		public DocumentController(IDocumentRepository documentRepository)
+			: base(false)
 		{
 			_documentRepository = documentRepository;
 		}

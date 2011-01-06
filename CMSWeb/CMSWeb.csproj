@@ -85,6 +85,8 @@
     <Folder Include="Views\Browse\" />
     <Folder Include="Scripts\TinyMce\" />
     <Folder Include="Attributes\" />
+    <Folder Include="Views\Approval\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -111,12 +113,14 @@
     <Compile Include="Models\Structure.cs" />
     <Compile Include="Models\IStructureRepository.cs" />
     <Compile Include="Models\StructureRepository.cs" />
-    <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\StructureController.cs" />
     <Compile Include="Models\IRepositoryBase.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
     <Compile Include="Attributes\CustomAttribute.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Controllers\Admin\UserManagerController.cs" />
+    <Compile Include="Controllers\Admin\ApprovalController.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -379,6 +383,7 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Views\Approval\List.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

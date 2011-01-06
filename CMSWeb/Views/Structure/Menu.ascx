@@ -2,6 +2,6 @@
 
 <ul>
     <% foreach (var structure in Model) { %>
-		<%= Html.MenuItem(structure.StructureName, "Index", "Browse", String.Empty, new { StructureID = structure.StructureID }) %>
+		<%= Html.MenuItem(structure.StructureName, "Index", "Browse", new { StructureID = structure.StructureID }) %>
     <% } %>
 </ul>

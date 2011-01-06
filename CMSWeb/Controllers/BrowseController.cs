@@ -15,6 +15,7 @@ namespace CMSWeb.Controllers
 		IDocumentRepository _documentRepository = null;
 		
 		public BrowseController (IStructureRepository structureRepository, IDocumentRepository documentRepository)
+			: base(false)
 		{
 			_structureRepository = structureRepository;
 			_documentRepository = documentRepository;
@@ -27,7 +28,6 @@ namespace CMSWeb.Controllers
 			return View(structure);
 		}
 		
-		[CustomAttribute("text")]
 		[Authorize]
 		public ActionResult Edit(int structureId)
 		{
@@ -53,7 +53,8 @@ namespace CMSWeb.Controllers
 				_documentRepository.UpdateDocument(new Document {
 					DocumentID = document.DocumentID,
 					DocumentData = documentData,
-					DocumentName = documentName});
+					DocumentName = documentName,
+					Status = Status.Pending });
 			
 			// update structure
 			Structure structure = _structureRepository.LoadStructure(structureId);

@@ -10,6 +10,12 @@ namespace CMSWeb.Controllers
 	[HandleError]
 	public class HomeController : BaseController
 	{
+		public HomeController ()
+			: base(false)
+		{
+			
+		}
+		
 		public ActionResult Index ()
 		{
 			ViewData["Message"] = "Welcome to ASP.NET MVC on Mono!";
