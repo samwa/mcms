@@ -1,14 +1,17 @@
-using System;
-using System.Web.Security;
-using System.Configuration;
-using System.Collections.Specialized;
-using Mono.Data.Sqlite;
-using System.Diagnostics;
-using System.Data;
-using System.Configuration.Provider;
+
 
 namespace CMSWeb.Membership
 {
+	using System;
+	using System.Web.Security;
+	using System.Configuration;
+	using System.Collections.Specialized;
+	using System.Diagnostics;
+	using System.Data;
+	using System.Configuration.Provider;
+	
+	using Mono.Data.Sqlite;
+	
 	public sealed class SQLiteRoleProvider : RoleProvider
 	{
         //

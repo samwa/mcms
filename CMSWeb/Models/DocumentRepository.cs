@@ -103,14 +103,16 @@ namespace CMSWeb.Models
 
 		public Document AddDocument (Document document)
 		{
-			document.DocumentRootID = null;
 			document.Created = DateTime.Now;
 			_db.Document.InsertOnSubmit(document);
 			_db.SubmitChanges();
 			
 			// update root id to be the same as doc id
-			document.DocumentRootID = document.DocumentID;
-			this.UpdateDocument(document);
+			if (document.DocumentRootID == null)
+			{
+				document.DocumentRootID = document.DocumentID;
+				this.UpdateDocument(document);
+			}
 			
 			return document;
 		}
@@ -135,7 +137,15 @@ namespace CMSWeb.Models
 		{
 			throw new NotImplementedException ();
 		}
+		
+		public bool DeleteAll()
+		{
+			string sql = "DELETE FROM Document";
+			_db.ExecuteCommand(sql);
+			
+			return true;
+		}
 		#endregion
-}
+	}
 }
 

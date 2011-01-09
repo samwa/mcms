@@ -66,6 +66,14 @@ namespace CMSWeb.Models
 			
 			return true;
 		}
+		
+		public bool DeleteAll()
+		{
+			string sql = "DELETE FROM Structure";
+			_db.ExecuteCommand(sql);
+			
+			return true;
+		}
 		#endregion
 }
 }

@@ -11,8 +11,8 @@ namespace CMSWeb.Controllers.Admin
 	
 	public class ApprovalController : BaseController
 	{
-		IDocumentRepository _documentRepository = null;
-		Document _document;
+		private IDocumentRepository _documentRepository;
+		private Document _document;
 		
 		public ApprovalController (IDocumentRepository documentRepository)
 			: base(true)

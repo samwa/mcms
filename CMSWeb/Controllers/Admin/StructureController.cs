@@ -1,4 +1,3 @@
-
 namespace CMSWeb.Controllers.Admin
 {
 	using System;
@@ -23,13 +22,13 @@ namespace CMSWeb.Controllers.Admin
 		//
         // GET: /Structure/		
  
-		[Authorize]
+		[Authorize(Roles = "Admin")]
 		public ActionResult Index()
         {
             return RedirectToAction("List");
         }
 		
-		[Authorize]
+		[Authorize(Roles = "Admin")]
 		public ActionResult List()
 		{
 			IList<Structure> structure = _structureRepository.ListStructures();
@@ -39,7 +38,7 @@ namespace CMSWeb.Controllers.Admin
         //
         // GET: /Structure/Details/5
 		
-		[Authorize]
+		[Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
             return View();
@@ -48,7 +47,7 @@ namespace CMSWeb.Controllers.Admin
         //
         // GET: /Structure/Create
 		
-		[Authorize]
+		[Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -57,13 +56,12 @@ namespace CMSWeb.Controllers.Admin
         //
         // POST: /Structure/Create
 		
-		[Authorize]
+		[Authorize(Roles = "Admin")]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(Structure structure)
         {
             try
             {
-                // TODO: Add insert logic here
 				_structureRepository.AddStructure(structure);
 
                 return RedirectToAction("Index");
@@ -77,7 +75,7 @@ namespace CMSWeb.Controllers.Admin
         //
         // GET: /Structure/Edit/5
  
-		[Authorize]
+		[Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 			Structure structure = _structureRepository.LoadStructure(id);
@@ -87,7 +85,7 @@ namespace CMSWeb.Controllers.Admin
         //
         // POST: /Structure/Edit/5
 		 
-		[Authorize]
+		[Authorize(Roles = "Admin")]
 		[AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(Structure structure)
         {
@@ -104,7 +102,7 @@ namespace CMSWeb.Controllers.Admin
 			
         }
 		
-		[Authorize]
+		[Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
 			_structureRepository.DeleteStructure(Convert.ToInt32(id));

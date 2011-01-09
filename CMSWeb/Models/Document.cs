@@ -50,13 +50,13 @@ namespace CMSWeb.Models
 			set { DocumentModified = (value ?? new DateTime()).ToString(); }
 		}
 		
-		public static Document Load(int? structureId)
+		public Document Load(int? structureId)
 		{
 			// get the review doc
 			return Load(structureId, Status.Review);
 		}
 		
-		public static Document Load(int? structureId, Status status)
+		public Document Load(int? structureId, Status status)
 		{
 			if (!structureId.HasValue)
 				return null;
@@ -85,13 +85,15 @@ namespace CMSWeb.Models
 			// create a new review document if current is live
 			if (this.Status == Status.Live)
 			{
-				document.DocumentRootID = this.DocumentID;
+				document.DocumentID = null;
 				return _documentRepository.AddDocument(document);
 			}
-				
-			// update review document if current is review
-			if (this.Status == Status.Review)
+			else if (this.Status == Status.Review)
+			{				
+				// update review document if current is review
+				document.DocumentID = this.DocumentID;
 				return _documentRepository.UpdateDocument(document);
+			}
 			
 			return null;
 		}
@@ -102,8 +104,11 @@ namespace CMSWeb.Models
 			if (this.DocumentRootID.HasValue)
 			{
 				Document oldDocument = _documentRepository.LoadDocument(this.DocumentRootID.Value, StatusToString(Status.Live));
-				oldDocument.Status = Status.Expiried;
-				_documentRepository.UpdateDocument(oldDocument);
+				if (oldDocument != null)
+				{
+					oldDocument.Status = Status.Expiried;
+					_documentRepository.UpdateDocument(oldDocument);
+				}
 			}
 			
 			// set existing to live
@@ -125,6 +130,12 @@ namespace CMSWeb.Models
 	    {
 	        return Enum.GetName(typeof(Status), status);
 	    }
+		
+		public bool DeleteAll()
+		{
+			_documentRepository.DeleteAll();
+			return true;
+		}
 	}
 }
 

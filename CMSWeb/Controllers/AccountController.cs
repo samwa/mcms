@@ -1,28 +1,43 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Security;
-
-using CMSWeb.Models;
-
 namespace CMSWeb.Controllers
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Web;
+	using System.Web.Mvc;
+	using System.Web.Mvc.Ajax;
+	using System.Web.Security;
+	
+	using CMSWeb.Models;
+	
 	public class AccountController : BaseController
 	{
 		IUserRepository _userRepository = null;
+		IUser _user;
 		
 		public AccountController (IUserRepository userRepository)
 			: base(false)
 		{
 			_userRepository = userRepository;
+			_user = new User(_userRepository);
 		}
 		
 		public void Index()
 		{
 			
+		}
+		
+		public ActionResult CheckLogin()
+		{
+			if (User.Identity.IsAuthenticated)
+				return RedirectToAction("NeedsRole");
+			else
+				return RedirectToAction("Login");
+		}
+		
+		public ActionResult NeedsRole()
+		{
+			return View();
 		}
 		
 		public ActionResult Login()
@@ -42,12 +57,13 @@ namespace CMSWeb.Controllers
 			if (password == confirmPassword)
 			{
 				System.Web.Security.Membership.CreateUser(username, password, email);	
+				Roles.AddUserToRole(username, EnumHelper.EnumToString<UserRole>(UserRole.User));
 				
 				FormsAuthentication.SetAuthCookie(username, true);
 				return RedirectToAction("Index", "Home");
 			}
 			
-			return RedirectToAction("Index");			
+			return RedirectToAction("Index");
 		}
 		
 		public ActionResult DoLogin(string username, string password)
@@ -62,7 +78,7 @@ namespace CMSWeb.Controllers
 				TempData["LoginMessage"] = "The username and password supplied are not valid";
 				return RedirectToAction("Login");
 			}
-		}		
+		}
 		
 		public ActionResult Logout()
 		{

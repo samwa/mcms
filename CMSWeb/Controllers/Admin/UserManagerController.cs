@@ -11,24 +11,50 @@ namespace CMSWeb.Controllers.Admin
 	
 	public class UserManagerController : BaseController
 	{
-		IUserRepository _userRepository = null;
+		private IUserRepository _userRepository = null;
+		private Models.User _user;
 		
 		public UserManagerController (IUserRepository userRepository)
 			: base(true)
 		{
 			_userRepository = userRepository;
+			_user = new Models.User(_userRepository);
 		}
 		
 		[Authorize(Roles = "Admin")]
-		public void Index()
+		public ActionResult Index()
 		{
-			View();
+			return RedirectToAction("List");
 		}
 		
-		
-		public ActionResult ManageUsers()
+		[Authorize(Roles = "Admin")]
+		public ActionResult List()
 		{
-			return View("ManageUsers");
+			List<Models.User> users = new List<Models.User>(_user.List(UserRole.User));
+			
+			List<UserRole> roles = EnumHelper.EnumToList<UserRole>();
+			ViewData["roles"] = roles;
+			
+			return View(users);
+		}		
+		
+		[Authorize(Roles = "Admin")]
+		public ActionResult MakeAdmin(string userName)
+		{
+			_user = _user.Load(userName);
+			_user.AddUserToRole(UserRole.Admin);
+			_user.RemoveUserFromRole(UserRole.User);
+			
+			return RedirectToAction("List");
+		}
+		
+		[Authorize(Roles = "Admin")]	
+        [AcceptVerbs(HttpVerbs.Post)]
+		public ActionResult Delete(string userName)
+		{
+			
+			
+			return RedirectToAction("List");
 		}
 		
 	}

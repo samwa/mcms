@@ -11,6 +11,7 @@ namespace CMSWeb.Models
 		Structure AddStructure(Structure structure);
 		Structure UpdateStructure(Structure structure);
 		bool DeleteStructure(int structureId);
+		bool DeleteAll();
 	}
 }
 

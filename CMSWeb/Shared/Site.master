@@ -14,6 +14,7 @@
 				<%= Html.MenuItem("structure", "Index", "Structure") %>	
 				<%= Html.MenuItem("approval", "Index", "Approval") %>	
 				<%= Html.MenuItem("user manager", "Index", "UserManager") %>	
+				<%= Html.MenuItem("configuration", "Index", "Configuration") %>	
 			<% } else { %>
 				<%= Html.MenuItem("home", "Index", "Home") %>		
 				<%= Html.MenuItem("register", "Register", "Account") %>
@@ -34,7 +35,9 @@
 		<br />
 	
         <div id="structure">
-            <% Html.RenderAction("Menu", "Structure"); %>
+			<% if (!(bool)ViewData["IsAdmin"]) { %>
+            	<% Html.RenderAction("Menu", "Structure"); %>		
+			<% } %>
         </div>
 
         <div id="main">

@@ -13,10 +13,9 @@ namespace CMSWeb.Controllers
 	{
 		private IStructureRepository _structureRepository;
 		private IDocumentRepository _documentRepository;
-		private IStructureDocumentRepository _structureDocumentRepository;
+		private IStructureRepository _structureDocumentRepository;
 		
 		private Document _document;
-		private StructureDocument _structureDocument;
 		
 		public BrowseController (IStructureRepository structureRepository, 
 		                         IDocumentRepository documentRepository)
@@ -24,17 +23,15 @@ namespace CMSWeb.Controllers
 		{
 			_structureRepository = structureRepository;
 			_documentRepository = documentRepository;
-			//_structureDocumentRepository = structureDocumentRepository;
 			
 			_document = new Document(_documentRepository);	
-			//_structureDocument = new StructureDocument(_structureDocumentRepository);
 		}
 		
 		public ActionResult Index(int structureId)
 		{
 			Structure structure = _structureRepository.LoadStructure(structureId);
 			
-			_document = Document.Load(structure.StructureID, Status.Live);
+			_document = _document.Load(structure.StructureID, Status.Live);
 			
 			ViewData["Document"] = (_document ?? new Document{});
 			return View(structure);
@@ -45,7 +42,7 @@ namespace CMSWeb.Controllers
 		{		
 			Structure structure = _structureRepository.LoadStructure(structureId);
 			
-			_document = Document.Load(structure.StructureID);
+			_document = _document.Load(structure.StructureID);
 			
 			ViewData["Document"] = (_document ?? new Document{});
 			Status status = Status.Review;
@@ -59,31 +56,37 @@ namespace CMSWeb.Controllers
         public ActionResult Edit(int structureId, string documentData, string documentName)
         {
 			// update or create document
-			_document = _documentRepository.LoadDocumentByStructure(structureId);
+			// get review doc
+			_document = _documentRepository.LoadDocumentByStructure(structureId, _document.StatusToString(Status.Review));
+			
+			// no review doc so get live
+			if (_document == null)
+				_document = _documentRepository.LoadDocumentByStructure(structureId);
 			
 			if (_document == null)
 			{
-				_document = new Document();
-				_document = _document.Add(new Document { 
-					DocumentRootID = null, 
+				// no live or review doc, create a new one
+				_document = new Document { 
 					DocumentData = documentData, 
 					DocumentName = documentName,
-					Status = Status.Review});
+					Status = Status.Review};
+				_document = _document.Add(_document);
 			}
 			else
 			{
 				Document newDocument = new Document { 
-					DocumentID = _document.DocumentID, 
+					DocumentID = null,
+					DocumentRootID = _document.DocumentRootID,
 					DocumentData = documentData, 
 					DocumentName = documentName,
-					Status = Status.Review};
+					Status = Status.Review };
 				
 				_document = _document.Update(newDocument);
 			}
 			
 			// update structure
 			Structure structure = _structureRepository.LoadStructure(structureId);
-			structure.StructureDocumentID = _document.DocumentID;
+			structure.StructureDocumentID = _document.DocumentRootID;
 			_structureRepository.UpdateStructure(structure);
 						
 			return RedirectToAction("Index", new { StructureID = structureId });			

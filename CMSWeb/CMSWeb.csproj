@@ -87,6 +87,8 @@
     <Folder Include="Attributes\" />
     <Folder Include="Views\Approval\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Views\Configuration\" />
+    <Folder Include="Views\UserManager\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -123,10 +125,8 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Models\IStructure.cs" />
     <Compile Include="Models\IUser.cs" />
-    <Compile Include="Models\StructureDocumentRepository.cs" />
-    <Compile Include="Models\IStructureDocumentRepository.cs" />
-    <Compile Include="Models\IStructureDocument.cs" />
-    <Compile Include="Models\StructureDocument.cs" />
+    <Compile Include="Controllers\Admin\ConfigurationController.cs" />
+    <Compile Include="Attributes\AcceptParameterAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -137,7 +137,6 @@
     <Content Include="Views\Account\Login.aspx" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Admin\UserManager.aspx" />
     <Content Include="Views\Structure\List.aspx" />
     <Content Include="Views\Structure\Edit.aspx" />
     <Content Include="Views\Structure\Index.aspx" />
@@ -391,6 +390,10 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Views\Approval\List.aspx" />
     <Content Include="Views\Approval\View.aspx" />
+    <Content Include="Views\Configuration\Index.aspx" />
+    <Content Include="Views\Configuration\Configure.aspx" />
+    <Content Include="Views\Account\NeedsRole.aspx" />
+    <Content Include="Views\UserManager\List.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

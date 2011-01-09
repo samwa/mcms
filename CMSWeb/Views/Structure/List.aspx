@@ -3,14 +3,15 @@
 </asp:Content>
 <asp:Content ID="StructureListContent" ContentPlaceHolderID="MainContent" runat="server">
 
-			<%= Html.MenuItem("Add", "Create", "Structure") %>		
+<%= Html.MenuItem("Add", "Create", "Structure") %>		
 
-List
+<h2>List Structure</h2>
 <ul>
 <% foreach (var structure in Model) { %>
 	<li>
 		<%= Html.ActionLink(structure.StructureName, "Edit", new { id=structure.StructureID }) %>
-         <%= Html.ActionLink("X", "Delete", new { id=structure.StructureID })%></li>
+        <%= Html.ActionLink("X", "Delete", new { id=structure.StructureID })%>
+    </li>
 <% } %>
 </ul>
 </asp:Content>

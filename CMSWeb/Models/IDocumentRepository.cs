@@ -17,6 +17,7 @@ namespace CMSWeb.Models
 		Document AddDocument(Document document);
 		Document UpdateDocument(Document document);
 		bool DeleteDocument(Document document);
+		bool DeleteAll();
 	}
 }
 
