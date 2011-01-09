@@ -7,8 +7,9 @@ Document List
 <ul>
 <% foreach (var document in Model) { %>
 	<li>
-		<%= Html.ActionLink(document.DocumentName, "View", new { id=document.DocumentID }) %>
-        <%= Html.ActionLink("X", "Reject", new { id=document.DocumentID })%></li>
+		<%= Html.ActionLink(document.DocumentName, "View", new { documentId=document.DocumentID.Value }) %>
+        <%= Html.ActionLink("X", "Reject", new { documentId=document.DocumentID.Value })%>
+    </li>
 <% } %>
 </ul>
 </asp:Content>

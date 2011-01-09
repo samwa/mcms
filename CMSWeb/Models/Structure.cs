@@ -1,8 +1,6 @@
-
-
 namespace CMSWeb.Models
 {
-	public partial class Structure : IDocument
+	public partial class Structure : IStructure
 	{
 	}
 }

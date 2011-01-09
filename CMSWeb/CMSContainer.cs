@@ -24,6 +24,9 @@ namespace CMSWeb
 			this.RegisterType<IUserRepository, UserRepository>();
 			this.RegisterType<IStructureRepository, StructureRepository>();
 			
+			// Register Models
+			this.RegisterType<IDocument, Document>();
+			
 			this.Configure<InjectedMembers>()
 				.ConfigureInjectionFor<RepositoryBase>(new InjectionConstructor("DocStoreConn"));
 			this.Configure<InjectedMembers>()

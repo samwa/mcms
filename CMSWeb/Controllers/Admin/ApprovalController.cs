@@ -12,12 +12,13 @@ namespace CMSWeb.Controllers.Admin
 	public class ApprovalController : BaseController
 	{
 		IDocumentRepository _documentRepository = null;
+		Document _document;
 		
 		public ApprovalController (IDocumentRepository documentRepository)
 			: base(true)
 		{
-			_documentRepository = documentRepository;
-			
+			_documentRepository = documentRepository;		
+			_document = new Document(_documentRepository);
 		}
 		
         public ActionResult Index()
@@ -25,10 +26,30 @@ namespace CMSWeb.Controllers.Admin
             return RedirectToAction("List");
         }
 		
+		public ActionResult View(int documentId)
+		{
+			Document document = _documentRepository.LoadDocument(documentId);
+			return View(document);
+		}
+		
 		public ActionResult List()
 		{
-			IList<Document> documents = _documentRepository.ListDocuments("pending");
+			IList<Document> documents = _documentRepository.ListDocuments(Enum.GetName(typeof(Status), Status.Review));
 			return View(documents);
+		}
+		
+		public ActionResult Approve(int documentId)
+		{
+			_document = _documentRepository.LoadDocument(documentId);
+			_document.Publish();
+			return RedirectToAction("List");	
+		}
+		
+		public ActionResult Reject(int documentId)
+		{
+			_document = _documentRepository.LoadDocument(documentId);
+			_document.Reject();
+			return RedirectToAction("List");	
 		}
 	}
 }

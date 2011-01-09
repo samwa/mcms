@@ -11,29 +11,46 @@ namespace CMSWeb.Controllers
 {
 	public class BrowseController : BaseController
 	{
-		IStructureRepository _structureRepository = null;
-		IDocumentRepository _documentRepository = null;
+		private IStructureRepository _structureRepository;
+		private IDocumentRepository _documentRepository;
+		private IStructureDocumentRepository _structureDocumentRepository;
 		
-		public BrowseController (IStructureRepository structureRepository, IDocumentRepository documentRepository)
+		private Document _document;
+		private StructureDocument _structureDocument;
+		
+		public BrowseController (IStructureRepository structureRepository, 
+		                         IDocumentRepository documentRepository)
 			: base(false)
 		{
 			_structureRepository = structureRepository;
 			_documentRepository = documentRepository;
+			//_structureDocumentRepository = structureDocumentRepository;
 			
+			_document = new Document(_documentRepository);	
+			//_structureDocument = new StructureDocument(_structureDocumentRepository);
 		}
 		
 		public ActionResult Index(int structureId)
 		{
 			Structure structure = _structureRepository.LoadStructure(structureId);
+			
+			_document = Document.Load(structure.StructureID, Status.Live);
+			
+			ViewData["Document"] = (_document ?? new Document{});
 			return View(structure);
 		}
 		
 		[Authorize]
 		public ActionResult Edit(int structureId)
-		{
+		{		
 			Structure structure = _structureRepository.LoadStructure(structureId);
-			Document document = _documentRepository.LoadDocumentByStructure(structureId);
-			ViewData["Document"] = (document ?? new Document{});
+			
+			_document = Document.Load(structure.StructureID);
+			
+			ViewData["Document"] = (_document ?? new Document{});
+			Status status = Status.Review;
+			ViewData["Status"] = Enum.GetName(typeof(Status), status);
+			ViewData["StatusList"] = new List<string>(new string [] { "Review", "Live" });
 			return View(structure);
 		}
 		
@@ -42,26 +59,34 @@ namespace CMSWeb.Controllers
         public ActionResult Edit(int structureId, string documentData, string documentName)
         {
 			// update or create document
-			Document document = _documentRepository.LoadDocumentByStructure(structureId);
+			_document = _documentRepository.LoadDocumentByStructure(structureId);
 			
-			if (document == null)
-				document = _documentRepository.AddDocument(new Document { 
-					DocumentID = null, 
+			if (_document == null)
+			{
+				_document = new Document();
+				_document = _document.Add(new Document { 
+					DocumentRootID = null, 
 					DocumentData = documentData, 
-					DocumentName = documentName});
-			else
-				_documentRepository.UpdateDocument(new Document {
-					DocumentID = document.DocumentID,
-					DocumentData = documentData,
 					DocumentName = documentName,
-					Status = Status.Pending });
+					Status = Status.Review});
+			}
+			else
+			{
+				Document newDocument = new Document { 
+					DocumentID = _document.DocumentID, 
+					DocumentData = documentData, 
+					DocumentName = documentName,
+					Status = Status.Review};
+				
+				_document = _document.Update(newDocument);
+			}
 			
 			// update structure
 			Structure structure = _structureRepository.LoadStructure(structureId);
-			structure.StructureDocumentID = document.DocumentID;
+			structure.StructureDocumentID = _document.DocumentID;
 			_structureRepository.UpdateStructure(structure);
-			return RedirectToAction("Index", new { StructureID = structureId });
-			
+						
+			return RedirectToAction("Index", new { StructureID = structureId });			
         }
 		
 	}

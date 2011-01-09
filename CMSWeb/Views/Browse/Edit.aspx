@@ -3,9 +3,10 @@
 <asp:Content ID="headContent" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="MainContentContent" ContentPlaceHolderID="MainContent" runat="server">
-Browse Structure : <%= Model.StructureName %>
-	
-		<%= Html.ActionLink("Normal Mode", "Index", new { structureId=Model.StructureID }) %>
+<%= Html.ActionLink("Normal Mode", "Index", new { structureId=Model.StructureID }) %>
+<h2>Browse Structure : <%= Model.StructureName %></h2>
+<%= ViewData["Status"] %>
+<%= ViewData["DocumentID"] %>
 
     <% using (Html.BeginForm()) {%>
 		<%= Html.Hidden("StructureID", Model.StructureID) %>

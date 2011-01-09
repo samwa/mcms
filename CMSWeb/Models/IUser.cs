@@ -1,7 +1,8 @@
 namespace CMSWeb.Models
 {	
-	public partial class User : IUser
+	public interface IUser
 	{
+		
 	}
 }
 

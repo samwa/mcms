@@ -7,7 +7,10 @@ namespace CMSWeb.Models
 	public interface IDocumentRepository
 	{
 		Document LoadDocument(int documentId);
+		Document LoadDocument(int documentRootId, string status);
 		Document LoadDocumentByStructure(int structureId);
+		Document LoadDocumentByStructure(int structureId, string status);
+		Document LoadDocumentByStructure(int structureId, IList<Status> statuses);
 		IList<Document> ListDocuments();
 		IList<Document> ListDocuments(string status);
 		
